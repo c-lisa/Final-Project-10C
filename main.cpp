@@ -67,6 +67,11 @@ Tutorial 7:
 Resource files
 QMediaPlayer, setMedia(), QURL, play()
 */
+/*
+Tutorial 8:
+QGraphicsPixMapItem, QPixMap, QImage
+
+*/
 
 Game * game;
 

@@ -5,12 +5,15 @@
 #include "enemy.h"
 #include <QMediaPlayer>
 #include <QPixmap>
+#include <QImage>
 
 Game::Game(QWidget * parent)
 {
     //1. Create a scene
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600); //set scene size
+    setBackgroundBrush(QBrush(QImage(":/Images/BackgroundArt.png")));
+
     //QPixmap backgroundart("qrc:/Images/BackgroundArt.png");
     //scene->addPixmap(backgroundart);
 
@@ -35,9 +38,8 @@ Game::Game(QWidget * parent)
     //3. Create item (player) to put in scene. By default rectangle has (x, y, w, l) - all = to 0.
     //x and y begin from top left corner.
     player = new Player();
-    player->setRect(0,0,100,100);
     player->setPos(400,500);
-    player->setBrush(Qt::green);
+    //player->setBrush(Qt::green);
     /*
     player->setPos(view->width()/2, view->height() - player->rect().height()); //set position of item
     */
@@ -64,6 +66,7 @@ Game::Game(QWidget * parent)
     //8. Play music
     QMediaPlayer * music = new QMediaPlayer();
     music->setMedia(QUrl("qrc:/Sound/Background.mp3"));
+    music->volumeChanged(1);
     music->play();
 
     show();

@@ -5,10 +5,15 @@
 #include "QDebug"
 #include "enemy.h"
 
-Player::Player(QGraphicsItem *parent) : QGraphicsRectItem(parent)
+Player::Player(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
 {
     bulletsound = new QMediaPlayer();
     bulletsound -> setMedia(QUrl("qrc:/Sound/Bullet.mp3"));
+
+    //player->setRect(0,0,100,100);
+
+    //Draw player
+    setPixmap(QPixmap(":/Images/Kanga_player.jpg"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)

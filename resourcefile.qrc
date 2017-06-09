@@ -5,5 +5,10 @@
     </qresource>
     <qresource prefix="/Images">
         <file>BackgroundArt.png</file>
+        <file>bullet.png</file>
+        <file>Kanga_player.jpg</file>
+        <file>watermelon.jpg</file>
+        <file>resized_bullet.png</file>
+        <file>resized_watermelon.jpg</file>
     </qresource>
 </RCC>

@@ -8,15 +8,20 @@
 
 extern Game * game;
 
-Enemy::Enemy(QGraphicsItem *parent) : QObject(), QGraphicsRectItem(parent)
+Enemy::Enemy(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
 {
     //1. CREATE ENEMY
     int random_number = rand()%700; //set random #
     setPos(random_number, 0); //set random position
+    /*
     setBrush(Qt::red);
 
     //Default of QGraphicsRectItem is (x, y, length = 0, width = 0)
     setRect(0,0,100,100);
+    */
+    setPixmap(QPixmap(":/Images/resized_watermelon.jpg"));
+    setTransformOriginPoint(50,50);
+    setRotation(180);
 
     //2. ADD BULLET TO SCENE - go to myrect.cpp (aka player)
     //3. CONNECT BULLET TO MOVE - set time and when it goes to 0 (aka timeout), it will move bullet

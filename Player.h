@@ -2,11 +2,12 @@
 #define PLAYER_H
 
 #include <QObject>
-#include <QGraphicsRectItem>
+#include <QGraphicsPixmapItem>
+//#include <QGraphicsRectItem>
 #include <QGraphicsItem>
 #include <QMediaPlayer>
 
-class Player : public QObject, public QGraphicsRectItem {
+class Player : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
 
 public:
