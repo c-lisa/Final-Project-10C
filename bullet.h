@@ -1,10 +1,9 @@
 #ifndef BULLET_H
 #define BULLET_H
 
-#include <QGraphicsPixmapItem>
-//#include <QGraphicsRectItem>
-#include <QGraphicsItem>
 #include <QObject>
+#include <QGraphicsItem>
+#include <QGraphicsPixmapItem>
 
 class Bullet : public QObject, public QGraphicsPixmapItem {
     Q_OBJECT
@@ -16,4 +15,5 @@ public slots:
     void move();
 };
 
-#endif // BULLET_H
+
+#endif // SHOOT_H
