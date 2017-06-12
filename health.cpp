@@ -3,24 +3,24 @@
 
 Health::Health(QGraphicsItem *parent) : QGraphicsTextItem(parent)
 {
-    //1. Initialize health to 3
+    //set health to initial value
     health = 3;
 
-    //2. Draw text.
-    setPlainText(QString("Health: ") + QString::number(health)); //will look like Score: 0
-
-    //3. Make it prettier: set color, set font type & size
+    //draw health text
+    setPlainText(QString("Health: ") + QString::number(health));
     setDefaultTextColor(Qt::red);
-    setFont(QFont("times", 16)); //font and size
+    setFont(QFont("arial", 16));
 }
 
 void Health::decrease()
 {
-   --health;
-   setPlainText(QString("Health: ") + QString::number(health)); //will look like Score: 0
+    --health;
+    setPlainText(QString("Health: ") + QString::number(health));
 }
 
 int Health::getHealth()
 {
     return health;
 }
+
+

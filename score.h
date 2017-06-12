@@ -14,5 +14,4 @@ private:
 
 };
 
-
 #endif // SCORE_H
