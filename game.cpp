@@ -1,73 +1,62 @@
-#include "game.h"
+#include <game.h>
+#include <QImage>
+#include <QPixmap>
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include <QFont>
-#include "enemy.h"
+#include "externalobject.h"
 #include <QMediaPlayer>
-#include <QPixmap>
-#include <QImage>
+#include "intro.h"
 
-Game::Game(QWidget * parent)
+Game::Game(QWidget *parent)
 {
-    //1. Create a scene
+    //Create the scene
     scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,800,600); //set scene size
-    setBackgroundBrush(QBrush(QImage(":/Images/BackgroundArt.png")));
 
-    //QPixmap backgroundart("qrc:/Images/BackgroundArt.png");
-    //scene->addPixmap(backgroundart);
-
-    //2. Add view to visualize scene. Disable scroll bar. Show scene. Set view size AND scene size.
-    /*
-    //5. Add view to actually visualize scene. Disable scrollbar. Show scene. Set view size AND scene size.
-    QGraphicsView* view = new QGraphicsView(scene);
-    view -> setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view -> setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    Can also do:
-    view -> setScene(scene);
-    view is by default a widget, so we need to make it visible.
-    view -> show();
-    view->setFixedSize(800,600); //set view size
-    */
+    //Set background & size of screen
+    scene->setSceneRect(0,0, 900, 700);
+    setBackgroundBrush(QBrush(QImage(":/Images/Background Image - Level 1.png")));
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(800,600);
+    setFixedSize(900,700);
 
-    //3. Create item (player) to put in scene. By default rectangle has (x, y, w, l) - all = to 0.
-    //x and y begin from top left corner.
+    //play music
+    QMediaPlayer * music = new QMediaPlayer();
+    music -> setMedia(QUrl("qrc:/Sound/Background Music.mp3"));
+    music->play();
+
+    //true = play game
+    cont_game = true;
+
+    //give intro to game
+    introduction = new Intro();
+    introduction -> setPos(400, 350);
+
+
+
+    //add player into scene
     player = new Player();
-    player->setPos(400,500);
-    //player->setBrush(Qt::green);
-    /*
-    player->setPos(view->width()/2, view->height() - player->rect().height()); //set position of item
-    */
+    player -> setPos(400,500);
 
-    //4. Give item (player) ability to be focused on AND then set focus.
+    //focus on player
     player -> setFlag(QGraphicsItem::ItemIsFocusable);
     player -> setFocus();
 
-    //5. Add item (player) to scene.
-    scene->addItem(player);
+    //add player to scene
+    scene -> addItem(player);
 
-    //6. Create Score/Health
+    //create score/health
     score = new Score();
     scene -> addItem(score);
     health = new Health();
     health -> setPos(health->x(), health->y()+25);
     scene -> addItem(health);
 
-    //7. Add the enemies.
+    //add enemies
     QTimer * timer = new QTimer();
-    QObject::connect(timer, SIGNAL(timeout()), player, SLOT(spawn()));
-    timer -> start(2000); //create an enemy eveyr 2000 milliseconds
-
-    //8. Play music
-    QMediaPlayer * music = new QMediaPlayer();
-    music->setMedia(QUrl("qrc:/Sound/Background.mp3"));
-    music->volumeChanged(1);
-    music->play();
+    QObject::connect(timer, SIGNAL(timeout()), player, SLOT(generate()));
+    timer -> start(2000);
 
     show();
 }
