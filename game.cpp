@@ -6,19 +6,26 @@
 #include <QFont>
 #include "externalobject.h"
 #include <QMediaPlayer>
+#include "button.h"
 
 Game::Game(QWidget *parent) : enemy_number(2000)
 {
-    //Create the scene
-    scene = new QGraphicsScene();
-
     //Set background & size of screen
-    scene->setSceneRect(0,0, 900, 700);
-    setBackgroundBrush(QBrush(QImage(":/Images/Background Image - Level 1.png")));
-    setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(900, 700);
+
+    //Create the scene
+    scene = new QGraphicsScene();
+    scene->setSceneRect(0,0, 900, 700);
+    setScene(scene);
+}
+
+void Game::start()
+{
+    scene->clear();
+
+    setBackgroundBrush(QBrush(QImage(":/Images/Background Image - Level 1.png")));
 
     //play music
     QMediaPlayer * music = new QMediaPlayer();
@@ -49,12 +56,36 @@ Game::Game(QWidget *parent) : enemy_number(2000)
     //add enemies
     QTimer * timer = new QTimer();
     QObject::connect(timer, SIGNAL(timeout()), player, SLOT(generate()));
-    if (score->getScore()>0 && score->getScore()%10 == 0)
-    {
-        enemy_number-=200;
-    }
-
     timer -> start(enemy_number);
 
     show();
+}
+
+void Game::display_menu()
+{
+    //create title menu
+    QGraphicsTextItem * title = new QGraphicsTextItem(QString("Little Hippo the Pilot"));
+    QFont titlefont ("courier new", 50);
+    title -> setFont(titlefont);
+    int title_x = this->width()/2 - title->boundingRect().width()/2;
+    int title_y = 150;
+    title->setPos(title_x, title_y);
+    scene -> addItem(title);
+
+    //create play button
+    button* playbutton = new button(QString("PLAY"));
+    int play_x = this->width()/2 - playbutton->boundingRect().width()/2;
+    int play_y = 275;
+    playbutton->setPos(play_x, play_y);
+    connect (playbutton, SIGNAL(clicked()), this, SLOT(start()));
+    scene -> addItem(playbutton);
+
+    //creqte quit button
+    button* quitButton = new button(QString("QUIT"));
+    int quit_x = this->width()/2 - quitButton->boundingRect().width()/2;
+    int quit_y = 350;
+    quitButton->setPos(quit_x, quit_y);
+    connect(quitButton,SIGNAL(clicked()),this, SLOT(close()));
+    scene->addItem(quitButton);
+
 }

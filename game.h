@@ -9,6 +9,8 @@
 #include "health.h"
 
 class Game : public QGraphicsView{
+    Q_OBJECT
+
 public:
     Game (QWidget* parent = 0);
     QGraphicsScene * scene;
@@ -18,8 +20,11 @@ public:
     Score * score;
     Health * health;
 
-    void start();
+    void display_menu();
     int enemy_number;
+
+public slots:
+    void start();
 
 };
 
