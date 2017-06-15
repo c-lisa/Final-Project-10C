@@ -13,8 +13,10 @@ RELEVANCE TO THE COURSE:
 Lambda Functions Example: 
 
    auto_inc_enemy_speed = [](int val){
+   
       if(val>=25 && val&25 == 0) return true;
-      else return false; 
+      else return false;
+      
    };
 
 Memory Management Example: 
@@ -40,6 +42,20 @@ Qt Connections Example:
       connect(timer, SIGNAL(timeout()), this, SLOT(move())); //Using signal and slot, move() is defined function
       timer-> start(50);
    }
+
+Inheritance Example: 
+
+   class Enemy: public QObject, public QGraphicsPixmapItem {
+
+      Q_OBJECT
+
+      //other code
+      //Inherited from QObject and QGraphicsPixmapItem in order to include pictures 
+
+   };
+
+Github: 
+This repository is an example of my use of Git control. 
 
 CREDIT
 
