@@ -1,16 +1,16 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <QGraphicsPixmapItem>
-//#include <QGraphicsRectItem>
+#include "externalobject.h"
 #include <QObject>
+#include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 
-class Enemy : public QObject, public QGraphicsPixmapItem {
+class Enemy : public QObject, public externalobject, public QGraphicsPixmapItem  {
     Q_OBJECT
 
 public:
-    Enemy(QGraphicsItem* parent = 0);
+    Enemy (QGraphicsItem* parent = 0);
 
 public slots:
     void move();

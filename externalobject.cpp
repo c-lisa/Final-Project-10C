@@ -1,4 +1,4 @@
-#include "enemy.h"
+#include "externalobject.h"
 #include <QGraphicsScene>
 #include "game.h"
 #include <QTimer>
@@ -7,17 +7,24 @@
 
 extern Game * game;
 
-Enemy::Enemy(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent)
+Enemy::Enemy(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent), enemy_speed(100)
 {
     //Create enemy
-    int random_number = rand()%600;
+    int random_number = rand()%800;
     setPos(random_number, 0);
     setPixmap(QPixmap(":/Images/Enemy Plane.png"));
+
+    //Increasing speed of enemy
+    if(game->score->getScore()>0 && (game->score->getScore())%25 == 0)
+    {
+        enemy_speed -= 15;
+    }
 
     //Get enemy to move
     QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer-> start(100);
+    timer-> start(enemy_speed);
+
 }
 
 void Enemy::move()
@@ -25,12 +32,11 @@ void Enemy::move()
     setPos(x(), y() + 7); //slower than bullets
 
     //Check if off screen
-    if (pos().y() - pixmap().height() > 800 )
+    if (pos().y() - pixmap().height() > 700 )
     {
         game -> health -> decrease();
         scene()-> removeItem(this);
         delete this;
     }
+
 }
-
-
