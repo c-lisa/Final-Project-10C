@@ -9,18 +9,26 @@ SYNOPSIS This one-player game consists of the player taking the role of the prot
 The game is coded in C++ in Qt. The .pro files, .h files, .cpp files, .jpg, .mp3, .qrc files, .png files are all included in the repository. 
 
 RELEVANCE TO THE COURSE: 
+
 Lambda Functions 
+
    Example: 
-   auto inc_enemy_speed = [](int val){
-        if((val > 25) && (val%(25) == 0))
-        {
-            return true;
-        }
-        else return false;
-    };
+
+   auto_inc_enemy_speed = [](int val){
+
+      if(val>=25 && val&25 == 0) return true;
+
+      else return false; 
+
+   };
+
 
 CREDIT
+
 Background Image - SushiHighRoller (DeviantArt)
+
 All other Images - drawn by me (Lisa Chiang)
+
 Ricochet bullet mp3 - SoundBible
+
 Background Music mp3 - SoundBible
