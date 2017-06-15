@@ -10,9 +10,7 @@ The game is coded in C++ in Qt. The .pro files, .h files, .cpp files, .jpg, .mp3
 
 RELEVANCE TO THE COURSE: 
 
-Lambda Functions 
-
-   Example: 
+Lambda Functions Example: 
 
    auto_inc_enemy_speed = [](int val){
 
@@ -22,6 +20,25 @@ Lambda Functions
 
    };
 
+Memory Management Example: 
+
+   if (typeid(*(colliding_items[i]))== typeid(Enemy)
+
+   {   
+   
+      //other code
+
+      scene() -> removeItem(colliding_items[i]); //not just removing item from scene
+
+      scene() -> removeItem(this);
+
+      deleting colliding_items[i]; //need to manage memory as well so bullet does not exist forever despite being off-screen
+   
+      delete this;
+
+      return; 
+
+   }
 
 CREDIT
 
