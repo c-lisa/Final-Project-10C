@@ -13,11 +13,8 @@ RELEVANCE TO THE COURSE:
 Lambda Functions Example: 
 
    auto_inc_enemy_speed = [](int val){
-
       if(val>=25 && val&25 == 0) return true;
-
       else return false; 
-
    };
 
 Memory Management Example: 
@@ -27,17 +24,21 @@ Memory Management Example:
    {   
    
       //other code
-
       scene() -> removeItem(colliding_items[i]); //not just removing item from scene
-
       scene() -> removeItem(this);
-
       deleting colliding_items[i]; //need to manage memory as well so bullet does not exist forever despite being off-screen
-   
       delete this;
-
       return; 
+   }
+   
+Qt Connections Example: 
 
+   {
+      
+      //create timer for bullet to run
+      QTimer * timer = new QTimer();
+      connect(timer, SIGNAL(timeout()), this, SLOT(move())); //Using signal and slot, move() is defined function
+      timer-> start(50);
    }
 
 CREDIT
