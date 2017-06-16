@@ -59,7 +59,7 @@ void Game::start()
     timer -> start(enemy_number);
 
     //connect gameover stuff
-    connect(health, SIGNAL(dead()), this, SLOT(gameover()));
+    connect(health, SIGNAL(dead()), this, SLOT(close()));
 
     show();
 }
@@ -91,7 +91,17 @@ void Game::display_menu()
 
 void Game::gameover()
 {
-    scene->clear();
+    //Set background & size of screen
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setFixedSize(900, 700);
+
+    //Create the scene
+    scene = new QGraphicsScene();
+    scene->setSceneRect(0,0, 900, 700);
+    setScene(scene);
+
+    //scene->clear();
     setBackgroundBrush(QBrush(QImage(":/Images/Intropagebackground.png")));
 
     //GAMEOVER
