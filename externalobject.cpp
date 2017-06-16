@@ -14,10 +14,19 @@ Enemy::Enemy(QGraphicsItem *parent) : QObject(), QGraphicsPixmapItem(parent), en
     setPos(random_number, 0);
     setPixmap(QPixmap(":/Images/Enemy Plane.png"));
 
+    //lambda function
+    auto inc_enemy_speed = [](int val){
+        if((val >= 25) && (val%(25) == 0))
+        {
+            return true;
+        }
+        else return false;
+    };
+
     //Increasing speed of enemy
-    if(game->score->getScore()>0 && (game->score->getScore())%25 == 0)
+    if(inc_enemy_speed(game->score->getScore()))
     {
-        enemy_speed -= 15;
+        enemy_speed-=15;
     }
 
     //Get enemy to move

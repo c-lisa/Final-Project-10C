@@ -30,7 +30,8 @@ SOURCES += main.cpp \
     bullet.cpp \
     externalobject.cpp \
     health.cpp \
-    score.cpp
+    score.cpp \
+    button.cpp
 
 HEADERS  += \
     game.h \
@@ -38,7 +39,8 @@ HEADERS  += \
     bullet.h \
     externalobject.h \
     health.h \
-    score.h
+    score.h \
+    button.h
 
 FORMS    +=
 

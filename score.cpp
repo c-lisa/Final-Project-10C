@@ -16,7 +16,16 @@ Score::Score(QGraphicsItem *parent) : QGraphicsTextItem(parent)
 void Score::increase()
 {
     ++score;
-    if (score%20 == 0)
+    //lambda
+    auto inc_health = [](int val){
+        if((val >= 20) && (val%(20) == 0))
+        {
+            return true;
+        }
+        else return false;
+    };
+    //inc health
+    if (inc_health(score))
     {
         game -> health -> increase();
     }

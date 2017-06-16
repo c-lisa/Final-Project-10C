@@ -15,7 +15,7 @@ public slots:
     void move();
 
 private:
-    double enemy_speed;
+    int enemy_speed;
 };
 
 #endif // EXTERNALOBJECT_H
