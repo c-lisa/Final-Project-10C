@@ -57,6 +57,8 @@ Inheritance Example:
 Github: 
 This repository is an example of my use of Git control. 
 
+VIDEO Click https://www.dropbox.com/s/9a4e3h15lf579db/LittleHippo.wmv?dl=0 to get a link to what the project should look like. 
+
 CREDIT
 
 Background Image - SushiHighRoller (DeviantArt)
