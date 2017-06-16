@@ -22,9 +22,11 @@ public:
 
     void display_menu();
     int enemy_number;
+    void play_quit();
 
 public slots:
     void start();
+    void gameover();
 
 };
 

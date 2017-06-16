@@ -58,24 +58,60 @@ void Game::start()
     QObject::connect(timer, SIGNAL(timeout()), player, SLOT(generate()));
     timer -> start(enemy_number);
 
+    //connect gameover stuff
+    connect(health, SIGNAL(dead()), this, SLOT(gameover()));
+
     show();
 }
 
 void Game::display_menu()
 {
+    setBackgroundBrush(QBrush(QImage(":/Images/Intropagebackground.png")));
+
     //create title menu
     QGraphicsTextItem * title = new QGraphicsTextItem(QString("Little Hippo the Pilot"));
     QFont titlefont ("courier new", 50);
+    titlefont.bold();
     title -> setFont(titlefont);
     int title_x = this->width()/2 - title->boundingRect().width()/2;
-    int title_y = 150;
+    int title_y = 100;
     title->setPos(title_x, title_y);
-    scene -> addItem(title);
 
+    //creating description
+    QGraphicsTextItem * description = new QGraphicsTextItem(QString("Little Hippo is the captain of the airforce in the kingdom of Teddy the \nYorkshire dog. The kingdom is under attack! Defend the kingdom by shooting\nthe enemy planes. Use left and right arrow keys to move and the spacebar\nto shoot."));
+    QFont descriptionfont ("courier new", 15);
+    description -> setFont(descriptionfont);
+    description -> setPos(0, 210);
+
+    scene -> addItem(title);
+    scene -> addItem(description);
+
+    play_quit();
+}
+
+void Game::gameover()
+{
+    scene->clear();
+    setBackgroundBrush(QBrush(QImage(":/Images/Intropagebackground.png")));
+
+    //GAMEOVER
+    QGraphicsTextItem * gameover = new QGraphicsTextItem(QString("GAMEOVER"));
+    QFont gameoverfont ("courier new", 70);
+    gameoverfont.bold();
+    gameover -> setFont(gameoverfont);
+    int gameover_x = this->width()/2 - gameover->boundingRect().width()/2;
+    int gameover_y = 150;
+    gameover->setPos(gameover_x, gameover_y);
+
+    play_quit();
+}
+
+void Game::play_quit()
+{
     //create play button
     button* playbutton = new button(QString("PLAY"));
     int play_x = this->width()/2 - playbutton->boundingRect().width()/2;
-    int play_y = 275;
+    int play_y = 350;
     playbutton->setPos(play_x, play_y);
     connect (playbutton, SIGNAL(clicked()), this, SLOT(start()));
     scene -> addItem(playbutton);
@@ -83,9 +119,8 @@ void Game::display_menu()
     //creqte quit button
     button* quitButton = new button(QString("QUIT"));
     int quit_x = this->width()/2 - quitButton->boundingRect().width()/2;
-    int quit_y = 350;
+    int quit_y = 450;
     quitButton->setPos(quit_x, quit_y);
     connect(quitButton,SIGNAL(clicked()),this, SLOT(close()));
     scene->addItem(quitButton);
-
 }

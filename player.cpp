@@ -9,8 +9,6 @@ Player::Player(QGraphicsItem *parent) : QGraphicsPixmapItem(parent)
     //Draw Player
     setPixmap(QPixmap(":/Images/LittleHippo.png"));
 
-    //setOpacity(0.5);
-
     //Initialize bullet sound
     bulletsound = new QMediaPlayer();
     bulletsound -> setMedia(QUrl("qrc:/Sound/Bullet Ricochet.mp3"));
