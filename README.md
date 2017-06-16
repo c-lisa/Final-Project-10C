@@ -66,3 +66,5 @@ All other Images - drawn by me (Lisa Chiang)
 Ricochet bullet mp3 - SoundBible
 
 Background Music mp3 - SoundBible
+
+FUTURE DIRECTIONS Create menu that will allow user to easily replay the game. Would also add more features such as power-ups or even scarier enemies. 
